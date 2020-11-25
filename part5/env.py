@@ -18,6 +18,7 @@ class ArmEnv(object):
         self.on_goal = 0
 
     def step(self, action):
+        print (action)
         done = False
         action = np.clip(action, *self.action_bound)
         self.arm_info['r'] += action * self.dt

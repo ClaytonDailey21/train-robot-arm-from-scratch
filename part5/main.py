@@ -3,12 +3,15 @@ Make it more robust.
 Stop episode once the finger stop at the final position for 50 steps.
 Feature & reward engineering.
 """
+import sys
+sys.path.append(r'.')
+
 from part5.env import ArmEnv
 from part5.rl import DDPG
 
 MAX_EPISODES = 500
 MAX_EP_STEPS = 200
-ON_TRAIN = True
+ON_TRAIN = False
 
 # set env
 env = ArmEnv()
@@ -56,6 +59,7 @@ def eval():
             env.render()
             a = rl.choose_action(s)
             s, r, done = env.step(a)
+            # print (s)
             if done:
                 break
 

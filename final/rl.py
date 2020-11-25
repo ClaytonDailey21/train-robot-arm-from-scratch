@@ -1,6 +1,9 @@
 import tensorflow as tf
 import numpy as np
 
+import tensorflow.compat.v1 as tf
+tf.compat.v1.disable_v2_behavior()
+
 #####################  hyper parameters  ####################
 
 LR_A = 0.001    # learning rate for actor

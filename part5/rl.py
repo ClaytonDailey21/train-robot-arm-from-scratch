@@ -1,6 +1,9 @@
 import tensorflow as tf
 import numpy as np
 
+import tensorflow.compat.v1 as tf
+tf.compat.v1.disable_v2_behavior()
+
 #####################  hyper parameters  ####################
 
 LR_A = 0.001    # learning rate for actor
@@ -71,7 +74,12 @@ class DDPG(object):
         self.sess.run(self.ctrain, {self.S: bs, self.a: ba, self.R: br, self.S_: bs_})
 
     def store_transition(self, s, a, r, s_):
+        # print ('s:', s)
+        # print ('a:', a)
+        # print ('r:', r)
+        # print ('s_:', s_)
         transition = np.hstack((s, a, [r], s_))
+        # print (transition)
         index = self.pointer % MEMORY_CAPACITY  # replace the old memory with new memory
         self.memory[index, :] = transition
         self.pointer += 1
